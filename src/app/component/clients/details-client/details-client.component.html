@@ -1,0 +1,26 @@
+<!--Seccion de detalles de un cliente-->
+
+<br>
+<section class="jumbotron" *ngIf="success == true">
+
+	<h1 *ngIf="!clientInRegistry">Detalles de {{client.name}} {{client.surname}}</h1>
+	<h1 *ngIf="clientInRegistry">{{client.name}} {{client.surname}}</h1>
+	<hr>
+	<ul>
+		<li>Nombre: {{client.name}}</li>
+		<li *ngIf="!client.company">Apellido: {{client.surname}}</li>
+		<li>Identificacion: {{client.identification}}</li>
+		<li *ngIf="client.company">Compañia</li>
+		<li *ngIf="!client.company">Persona natural</li>
+	</ul>
+
+	<hr>
+	<button *ngIf="!clientInRegistry" type="button" class="btn btn-warning" [routerLink]="['/clients/edit/', id]">Editar</button>
+
+	<!--En caso de que este en Compra y se quiera cambiar el cliente-->
+	<button *ngIf="clientInRegistry" type="button" class="btn btn-warning" (click)="change($event)">Cambiar cliente</button>
+
+	<!--Seccion donde se muestra el -->
+	<hr>
+	<app-get-registry *ngIf="!clientInRegistry" [arrayRegistry]="this.client.registryId"></app-get-registry>
+</section>

@@ -1,0 +1,39 @@
+<!--Pagina principal donde se muestra todo el inventario-->
+<br>
+
+<h1>{{title}}</h1>
+
+<table *ngIf="success == 1" class="table table-hover">
+	<thead>
+		<!--Cabecera de tabla-->
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Marca</th>
+			<th scope="col">Descripcion</th>
+			<th scope="col">Categoria</th>
+			<th scope="col">Disponible</th>
+			<th scope="col">Precio</th>
+
+		</tr>
+	</thead>
+
+
+		<!--Cuerpo de la tabla      *ngIf="peticion_succeful"-->
+	<tbody> 
+		<tr *ngFor="let product of inventory; let indice = index">
+			<th scope="row">{{indice}}</th>
+			<td><a [routerLink]="['/inventory/detail/', product._id]">{{product.name}}</a></td>
+			<td>{{product.brand}}</td>
+			<td>{{product.description}}</td>
+			<td>{{product.category}}</td>
+			<td>{{product.quantity}}</td>
+			<td>{{product.price}}</td>
+		</tr>
+	</tbody>
+</table>
+
+	<!--Advertencia en caso de que este vacio el inventario-->
+<div *ngIf="success == 1 && inventory.length == 0" class="alert alert-warning" role="alert">
+	No hay ningun producto registrado
+</div>

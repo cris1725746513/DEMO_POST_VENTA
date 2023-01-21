@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: -61px;
+}
+
+
+.alert {
+    padding: 0.50rem 1.25rem;
+}
+
+.btn-danger{
+    margin-left: 10px;
+}
+
+.bt-home{
+	margin: 5px auto;
+	margin-left: 10px;
+}
+
+.center{
+	margin: 5px;
+	padding-left: 179px;
+}

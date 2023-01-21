@@ -1,0 +1,58 @@
+<!--Seccion de detalles de los productos-->
+<br>
+<section class="jumbotron" *ngIf="success">
+	<h1>{{title}} {{product.brand}} - {{product.name}}</h1>
+	<hr>
+
+	<ul>
+		<li> Nombre: {{product.name}}</li>
+		<li> Marca: {{product.brand}}</li>
+		<li> Descripcion: {{product.description}}</li>
+		<li *ngIf="!edit"> Precio: {{product.price}}</li>
+		<li> Categoria: {{product.category}}</li>
+		<li *ngIf="!edit"> Cantidad disponible: {{product.quantity}} </li>
+	</ul>
+
+	<hr>
+
+	<!--Botones de editar y deshabilitar-->
+	<div *ngIf="!edit && enable">
+		<button type="button" class="btn btn-warning" [routerLink]="['/inventory/edit/', product._id]">Editar</button>
+		<button type="button" class="btn btn-danger" (click)="disableProduct()">Deshabilitar</button>
+	</div>
+
+
+	<!--Seccion de botones en caso de que-->
+	<button *ngIf="!edit && !enable" type="button" class="btn btn-warning" (click)="enableProduct()">Habilitar producto</button>
+
+
+	<!--Seccion donde se edita el precio y la cantidad de los productos en caso de que estes editando-->
+	<div *ngIf="edit">
+
+		<form #newProduct="ngForm" (ngSubmit)="updateProduct()">
+			<div class="form-group">
+				<label for="quantity">Cantidad</label>
+				<input type="number" class="form-control" name="quantity" placeholder="Cantidad" #quantity="ngModel" [(ngModel)]="product.quantity" required>
+				<div *ngIf="quantity.touched && !product.quantity" class="alert alert-danger" role="alert">
+					La cantidad es requerida
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="price">Precio</label>
+				<input type="number" class="form-control" name="price" placeholder="Precio" #price="ngModel" [(ngModel)]="product.price" required>
+				<div *ngIf="price.touched && !product.price" class="alert alert-danger" role="alert">
+					El precio es requerido
+				</div>
+			</div>
+
+			<br>
+			<button type="submit" class="btn btn-warning" [disabled]="!newProduct.form.valid">Guardar</button>
+		</form>
+	</div>
+
+	<!--Seccion donde se muestra el conjunto de registros de compras relacionado con este producto-->
+	<hr>
+	<app-get-registry [arrayRegistry]="this.product.registryId"></app-get-registry>
+
+</section>
