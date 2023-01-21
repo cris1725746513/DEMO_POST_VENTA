@@ -30,4 +30,4 @@ _De esta forma tendras el proyecto corriendo en un servidor local en tu computad
 
 ## Construido con 🛠️
 
-_Esta pagina fue construida con Angular 7_
+_Esta pagina fue construida con Angular 7_"# test" 
