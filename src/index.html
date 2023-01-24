@@ -1,14 +1,56 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8">
-  <title>Client</title>
-  <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
 </head>
 <body>
-  <app-root></app-root>
+
+  <!-- barra de navegacion de la pagina -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['home']">Proyecto POS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['registry/add']">Compra</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['registry']">Ventas</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Clientes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['clients/add']">Registrar</a>
+            <a class="dropdown-item" [routerLink]="['clients']">Ver Listado</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            Inventario
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]='["inventory/add"]'>Agregar Producto</a>
+            <a class="dropdown-item" [routerLink]='["inventory"]'>Ver Inventario</a>
+            <a class="dropdown-item" [routerLink]='["inventory/disabled"]'>Deshabilitados</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--Contenido de la pagina en el routerOutlet-->
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  
 </body>
 </html>
+
+
